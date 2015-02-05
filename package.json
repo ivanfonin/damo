@@ -1,0 +1,19 @@
+{
+  "name": "themegulper",
+  "version": "0.0.1",
+  "description": "WordPress theme development workflow using Gulp.js",
+  "repository": {
+    "type": "git",
+    "url": "?.git"
+  },
+  "keywords": [
+    "wordpress",
+    "gulp",
+    "browserify",
+    "sass",
+    "uglify",
+    "autoprefixer"
+  ],
+  "author": "Ivan Fonin",
+  "license": "MIT License"
+}
