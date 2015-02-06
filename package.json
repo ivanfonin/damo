@@ -1,12 +1,12 @@
 {
-  "name": "themegulper",
-  "version": "0.0.1",
-  "description": "WordPress theme development workflow using Gulp.js",
-  "repository": {
-    "type": "git",
-    "url": "?.git"
-  },
-  "keywords": [
+    "name": "themegulper",
+    "version": "0.0.1",
+    "description": "WordPress theme development workflow using Gulp.js",
+    "repository": {
+        "type": "git",
+        "url": "?.git"
+    },
+    "keywords": [
     "wordpress",
     "gulp",
     "browserify",
@@ -14,10 +14,10 @@
     "uglify",
     "autoprefixer"
   ],
-  "author": "Ivan Fonin",
-  "license": "MIT License",
-  "devDependencies": {
-    "gulp": "~3.8.10",
-    "require-dir": "~0.1.0"
-  }
+    "author": "Ivan Fonin",
+    "license": "MIT License",
+    "devDependencies": {
+        "gulp": "~3.8.10",
+        "require-dir": "~0.1.0"
+    }
 }
