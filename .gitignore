@@ -1,7 +1,9 @@
-dist
-build
-node_modules
-bower_components
+# Ignore all WordPress theme files in src/ (build/ and dist/ too). Track only Themegulper workflow files.
+src/
+dist/
+build/
+node_modules/
+bower_components/
 .tmp
 .sass-cache
 npm-debug.log

@@ -24,6 +24,15 @@ var src = "./src/",
 -----------
 */
 module.exports = {
+    /* Folders
+    ----------
+    All project folder settings
+    */
+    folders: {
+        src: src,
+        build: build,
+        dist: dist
+    },
     /* Files
     --------
     All .php and language files from 'src' should be copied to final theme
@@ -81,11 +90,11 @@ module.exports = {
         },
         minify: {
             keepSpecialComments: 1
-        },
+        }/*,
         sass: {
             includePaths: [bower],
             precision: 8
-        }
+        }*/
     },
     /* Browserify
     -------------

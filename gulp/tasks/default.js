@@ -1,5 +1,9 @@
-var gulp = require('gulp');
+var gulp = require('gulp'),
+    config = require('../config.js'),
+    del = require('del');
 
-gulp.task('default', function () {
-
+gulp.task('delete', function (cb) {
+    del(["./dist", "./build"], cb);
 });
+
+gulp.task('default', ['delete']);
