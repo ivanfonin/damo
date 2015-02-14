@@ -4,6 +4,7 @@ dist/
 build/
 node_modules/
 bower_components/
+bower.json
 .tmp
 .sass-cache
 npm-debug.log

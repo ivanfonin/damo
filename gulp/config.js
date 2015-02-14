@@ -24,27 +24,49 @@ var src = "./src/",
 -----------
 */
 module.exports = {
-    /* Folders
+    /* Project
     ----------
-    All project folder settings
+    Main project folders
     */
-    folders: {
+    project: {
         src: src,
         build: build,
         dist: dist
     },
-    /* Files
-    --------
-    All .php and language files from 'src' should be copied to final theme
+    /* Folders
+    ----------
+    Helper project folders
     */
-    files: {
+    folders: {
         languages: {
-            src: src + 'languages/**/*',
             dest: build + 'languages/'
         },
         php: {
-            src: src + '**/*.php',
             dest: build
+        },
+        fonts: {
+            dest: build + 'fonts/'
+        },
+        js: {
+            dest: src + 'js/'
+        }
+    },
+    /* Files
+    --------
+    All .php, language files, scripts and fonts source files
+    */
+    files: {
+        languages: {
+            src: src + 'languages/**/*'
+        },
+        php: {
+            src: src + '**/*.php'
+        },
+        fonts: {
+            src: src + 'fonts/**/*'
+        },
+        js: {
+            src: src + 'js/**/*.js'
         }
     },
     /* Images
@@ -95,27 +117,5 @@ module.exports = {
             includePaths: [bower],
             precision: 8
         }*/
-    },
-    /* Browserify
-    -------------
-    Separate bulndle will be generated for each item in bundleConfigs
-    */
-    browserify: {
-        bundleConfigs: [{
-            entries: src + 'js/**/*.js',
-            dest: build,
-            outputName: 'app.js',
-            extensions: ['.coffee', '.hbs'], // Additional file extentions to make optional
-            require: ['jquery', 'backbone/node_modules/underscore']
-                // list of modules to make require-able externally
-                // See https://github.com/greypants/gulp-starter/issues/87 for note about
-                // why this is 'backbone/node_modules/underscore' and not 'underscore'
-        }, {
-            entries: src + 'js/contacts.js',
-            dest: build,
-            outputName: 'contacts.js',
-            external: ['jquery', 'underscore']
-                // list of externally available modules to exclude from the bundle
-        }]
     }
 };
