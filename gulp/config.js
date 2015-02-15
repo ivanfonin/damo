@@ -16,11 +16,13 @@ src   - Source files of your theme. Edit only in this directory.
 build - Working version of your theme for testing purposes.
 dist  - Distribution version of the WordPress theme with minified styles, scripts, etc.
 .temp - Temporary folder. Remove it with 'gulp clean' command.
+bower - Folder containing all Bower components.
 */
 var src = "./src/",
     build = "./build/" + theme + "/",
     dist = "./dist/" + theme + "/",
-    temp = "./.temp/";
+    temp = "./.temp/",
+    bower = './bower_components/';
 
 /* Settings
 -----------
@@ -34,7 +36,8 @@ module.exports = {
         src: src,
         build: build,
         dist: dist,
-        temp: temp
+        temp: temp,
+        bower: bower
     },
     /* Folders
     ----------
@@ -60,12 +63,11 @@ module.exports = {
         css: {
             build: build + 'css/',
             dist: dist + 'css/'
-        },
-        bower: './bower_components'
+        }
     },
     /* Files
     --------
-    All PHP files, languages, scripts, fonts, images and styles source files
+    All PHP files, languages, scripts, fonts, images and styles source files of the WordPress theme
     */
     files: {
         languages: {
@@ -101,35 +103,5 @@ module.exports = {
         screenshot: {
             src: src + 'screenshot.png'
         }
-    },
-    /* Styles
-    ---------
-    Styles should be compiled with sass plugin, autoprefixed and minified
-    */
-    styles: {
-        build: {
-            src: [src + '*.scss', '!' + src + 'scss/_*.scss'], // Ignore partials
-            dest: build
-        },
-        dist: {
-            src: [dist + 'style.css', '!' + dist + 'style.min.css'],
-            minify: {
-                keepSpecialComments: 1
-            },
-            dest: dist
-        },
-        autoprefixer: {
-            browsers: ['> 3%', 'last 2 versions', 'ie 9', 'ios 6', 'android 4']
-        },
-        rename: {
-            suffix: '.min'
-        },
-        minify: {
-            keepSpecialComments: 1
-        }/*,
-        sass: {
-            includePaths: [bower],
-            precision: 8
-        }*/
     }
 };
