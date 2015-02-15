@@ -2,6 +2,7 @@
 # Ignore bower.json and bower_components/ folder.
 # Track only Themegulper workflow files!
 src/*
+src/
 dist/
 build/
 node_modules/
