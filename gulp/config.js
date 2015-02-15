@@ -15,10 +15,12 @@ var theme = "starter";
 src   - Source files of your theme. Edit only in this directory.
 build - Working version of your theme for testing purposes.
 dist  - Distribution version of the WordPress theme with minified styles, scripts, etc.
+.temp - Temporary folder. Remove it with 'gulp clean' command.
 */
 var src = "./src/",
     build = "./build/" + theme + "/",
-    dist = "./dist/" + theme + "/";
+    dist = "./dist/" + theme + "/",
+    temp = "./.temp/";
 
 /* Settings
 -----------
@@ -31,29 +33,39 @@ module.exports = {
     project: {
         src: src,
         build: build,
-        dist: dist
+        dist: dist,
+        temp: temp
     },
     /* Folders
     ----------
-    Helper project folders
+    Helper project folders based on WordPress theme structure
     */
     folders: {
         languages: {
-            dest: build + 'languages/'
-        },
-        php: {
-            dest: build
+            build: build + 'languages/',
+            dist: dist + 'languages/'
         },
         fonts: {
-            dest: build + 'fonts/'
+            build: build + 'fonts/',
+            dist: dist + 'fonts/'
+        },
+        images: {
+            build: build + 'images/',
+            dist: dist + 'images/'
         },
         js: {
-            dest: src + 'js/'
-        }
+            build: build + 'js/',
+            dist: dist + 'js/'
+        },
+        css: {
+            build: build + 'css/',
+            dist: dist + 'css/'
+        },
+        bower: './bower_components'
     },
     /* Files
     --------
-    All .php, language files, scripts and fonts source files
+    All PHP files, languages, scripts, fonts, images and styles source files
     */
     files: {
         languages: {
@@ -65,27 +77,29 @@ module.exports = {
         fonts: {
             src: src + 'fonts/**/*'
         },
+        images: {
+            src: src + 'images/**/*(*.png|*.jpg|*.jpeg|*.gif|*.svg)'
+        },
         js: {
             src: src + 'js/**/*.js'
+        },
+        scss: {
+            src: src + 'scss/style.scss', // Main .scss file with @import's of all other .scss files!
+            all: src + 'scss/**/*.scss'   // Need this path to 'watch' all files for changes
         }
     },
     /* Images
     ---------
-    Images should be just copied to 'build' version and optimized for 'dist'
+    Images optimization settings for 'gulp-imagemin' plugin
     */
     images: {
-        build: {
-            src: src + '**/*(*.png|*.jpg|*.jpeg|*.gif)',
-            dest: build
+        imagemin: {
+            optimizationLevel: 7,
+            progressive: true,
+            interlaced: true
         },
-        dist: {
-            src: [dist + '**/*(*.png|*.jpg|*.jpeg|*.gif)', '!' + dist + 'screenshot.png'],
-            imagemin: {
-                optimizationLevel: 7,
-                progressive: true,
-                interlaced: true
-            },
-            dest: dist
+        screenshot: {
+            src: src + 'screenshot.png'
         }
     },
     /* Styles

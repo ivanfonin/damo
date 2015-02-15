@@ -24,30 +24,3 @@ gulp.task('bower-scripts', function() {
 });
 
 gulp.task('bower', ['bower-fonts', 'bower-scripts']);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-gulp.task('scripts', function() {
-    
-});
-
-gulp.task('styles', function() {
-    
-});*/
