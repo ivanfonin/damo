@@ -103,5 +103,20 @@ module.exports = {
         screenshot: {
             src: src + 'screenshot.png'
         }
+    },
+    /* BrowserSync
+    --------------
+    Settings for 'browser-sync' plugin
+    */
+    browsersync: {
+        {
+            files: [build + '**/*', '!' + build + '**/*.map'],
+            notify: false, // In-line notifications
+            open: false, // Set to false if you don't like the browser window opening automatically
+            port: 80, // Port number for the live version of the site; default: 3000
+            proxy: 'materializer.dev', // Using a proxy instead of the built-in server
+            watchOptions: {
+                debounceDelay: 2000 // Delay for events called in succession for the same file/event
+            }
     }
 };
