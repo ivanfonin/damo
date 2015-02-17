@@ -103,5 +103,12 @@ module.exports = {
         screenshot: {
             src: src + 'screenshot.png'
         }
+    },
+    /* Browsersync
+    --------------
+    Images optimization settings for 'gulp-imagemin' plugin
+    */
+    browsersync: {
+        proxy: 'themetest.dev'
     }
 };

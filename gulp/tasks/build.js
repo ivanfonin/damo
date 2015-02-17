@@ -36,7 +36,7 @@ gulp.task('scripts', function() {
     .pipe(gulp.dest(config.folders.js.build));
 });
 
-gulp.task('scss', function() {
+gulp.task('style.scss', function() {
     return gulp.src(config.files.scss.src)
     .pipe(plugins.sourcemaps.init())
         .pipe(plugins.sass())
@@ -46,7 +46,7 @@ gulp.task('scss', function() {
     .pipe(gulp.dest(config.project.temp));
 });
 
-gulp.task('style.css', ['scss'], function() {
+gulp.task('style.css', ['style.scss'], function() {
     return gulp.src([config.project.src + 'style.css', config.project.temp + 'style.css'])
     .pipe(plugins.concat('style.css'))
     .pipe(gulp.dest(config.project.build));

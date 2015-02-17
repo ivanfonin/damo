@@ -1,9 +1,15 @@
 var gulp = require('gulp'),
-    config = require('../config.js'),
-    del = require('del');
+    browsersync = require('browser-sync'),
+    config = require('../config.js');
 
-gulp.task('clean', function (cb) {
-    del([config.project.temp, './build', './dist'], cb);
+gulp.task('browsersync', function() {
+    browsersync({
+        proxy: config.browsersync.proxy
+    });
+});
+
+gulp.task('browsersync-reload', function () {
+    browsersync.reload();
 });
 
 gulp.task('default', ['browsersync'], function () {

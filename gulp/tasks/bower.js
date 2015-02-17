@@ -5,7 +5,7 @@ var gulp = require('gulp'),
 
 // Copy fonts from 'bower_components' to 'src/fonts' folder
 gulp.task('bower-fonts', function() {
-    var fontsFilter = plugins.filter(['*.eot', '*.woff', '**/*.svg', '*.ttf']);
+    var fontsFilter = plugins.filter(['*.eot', '*.woff', '*.svg', '*.ttf']);
     
     return gulp.src(bowerFiles())
     .pipe(fontsFilter)
