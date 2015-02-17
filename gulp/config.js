@@ -49,6 +49,7 @@ module.exports = {
             dist: dist + 'languages/'
         },
         fonts: {
+            src: src + 'fonts/',
             build: build + 'fonts/',
             dist: dist + 'fonts/'
         },
@@ -57,8 +58,12 @@ module.exports = {
             dist: dist + 'images/'
         },
         js: {
+            src: src + 'js/',
             build: build + 'js/',
             dist: dist + 'js/'
+        },
+        scss: {
+            src: src + 'scss/'
         },
         css: {
             build: build + 'css/',
