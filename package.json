@@ -1,6 +1,6 @@
 {
   "name": "themegulper",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "WordPress theme development workflow using Gulp.js",
   "repository": {
     "type": "git",
