@@ -38,7 +38,7 @@ gulp.task('dist-scripts', function() {
 gulp.task('dist-scss', function() {
     return gulp.src(config.files.scss.src)
     .pipe(plugins.sass())
-    .pipe(plugins.autoprefixer('last 2 version'))
+    .pipe(plugins.postcss([ autoprefixer({ browsers: ['last 2 versions'] }) ]))
     .pipe(plugins.minifyCss())
     .pipe(gulp.dest(config.project.temp));
 });
