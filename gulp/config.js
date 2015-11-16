@@ -21,8 +21,7 @@ bower - Folder containing all Bower components.
 var src = "./src/",
     build = "./build/" + theme + "/",
     dist = "./dist/" + theme + "/",
-    temp = "./.temp/",
-    bower = './bower_components/';
+    temp = "./.temp/";
 
 /* Settings
 -----------
@@ -36,8 +35,7 @@ module.exports = {
         src: src,
         build: build,
         dist: dist,
-        temp: temp,
-        bower: bower
+        temp: temp
     },
     /* Folders
     ----------
