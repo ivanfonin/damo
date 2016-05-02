@@ -8,7 +8,7 @@ Gulp configuration file for the Themegulper workflow.
 --------
 theme - Name of your WordPress theme.
 */
-var theme = "starter";
+var theme = "shopper";
 
 /* Paths
 --------
@@ -29,7 +29,7 @@ var src = "./src/",
 module.exports = {
     /* Project
     ----------
-    Main project folders
+    Main project folders.
     */
     project: {
         src: src,
@@ -39,7 +39,7 @@ module.exports = {
     },
     /* Folders
     ----------
-    Helper project folders based on WordPress theme structure
+    Helper project folders based on WordPress theme structure.
     */
     folders: {
         languages: {
@@ -54,6 +54,10 @@ module.exports = {
         images: {
             build: build + 'images/',
             dist: dist + 'images/'
+        },
+        videos: {
+            build: build + 'videos/',
+            dist: dist + 'videos/'
         },
         js: {
             src: src + 'js/',
@@ -70,7 +74,7 @@ module.exports = {
     },
     /* Files
     --------
-    All PHP files, languages, scripts, fonts, images and styles source files of the WordPress theme
+    All PHP files, languages, scripts, fonts, images and styles source files of the WordPress theme.
     */
     files: {
         languages: {
@@ -85,17 +89,20 @@ module.exports = {
         images: {
             src: src + 'images/**/*(*.png|*.jpg|*.jpeg|*.gif|*.svg)'
         },
+        videos: {
+            src: src + 'videos/**/*'
+        },
         js: {
             src: src + 'js/**/*.js'
         },
         scss: {
             src: src + 'scss/style.scss', // Main .scss file with @import's of all other .scss files!
-            all: src + 'scss/**/*.scss'   // Need this path to 'watch' all files for changes
+            all: src + 'scss/**/*.scss'   // Need this path to 'watch' all files for changes.
         }
     },
     /* Images
     ---------
-    Images optimization settings for 'gulp-imagemin' plugin
+    Images optimization settings for 'gulp-imagemin' plugin.
     */
     images: {
         imagemin: {
@@ -109,9 +116,9 @@ module.exports = {
     },
     /* Browsersync
     --------------
-    Images optimization settings for 'gulp-imagemin' plugin
+    Browsersync settings.
     */
     browsersync: {
-        proxy: 'themetest.dev'
+        proxy: 'shopper.dev'
     }
 };

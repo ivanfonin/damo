@@ -23,9 +23,14 @@ gulp.task('images', function() {
     .pipe(gulp.dest(config.folders.images.build));
 });
 
+gulp.task('videos', function() {
+    return gulp.src(config.files.videos.src)
+    .pipe(gulp.dest(config.folders.videos.build));
+});
+
 gulp.task('screenshot', function() {
     return gulp.src(config.images.screenshot.src)
-    .pipe(gulp.dest(config.project.build))
+    .pipe(gulp.dest(config.project.build));
 });
 
 gulp.task('scripts', function() {
@@ -42,7 +47,7 @@ gulp.task('style.scss', function() {
     .pipe(plugins.sourcemaps.init())
         .pipe(plugins.sass())
         .pipe(plugins.postcss([ autoprefixer({ browsers: ['last 2 versions'] }) ]))
-        .pipe(plugins.minifyCss())
+        .pipe(plugins.cleanCss())
     .pipe(plugins.sourcemaps.write())
     .pipe(gulp.dest(config.project.temp));
 });
@@ -53,4 +58,4 @@ gulp.task('style.css', ['style.scss'], function() {
     .pipe(gulp.dest(config.project.build));
 });
 
-gulp.task('build', ['php', 'languages', 'fonts', 'images', 'screenshot', 'scripts', 'style.css']);
+gulp.task('build', ['php', 'languages', 'fonts', 'images', 'videos', 'screenshot', 'scripts', 'style.css']);
