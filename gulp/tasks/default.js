@@ -3,9 +3,7 @@ var gulp = require('gulp'),
     config = require('../config.js');
 
 gulp.task('browsersync', function() {
-    browsersync({
-        proxy: config.browsersync.proxy
-    });
+    browsersync(config.browsersync);
 });
 
 gulp.task('browsersync-reload', function () {
@@ -13,17 +11,17 @@ gulp.task('browsersync-reload', function () {
 });
 
 gulp.task('default', ['browsersync'], function () {
-    
+
     gulp.watch(config.files.php.src, ['php', 'browsersync-reload']);
-    
+
     gulp.watch(config.files.languages.src, ['languages', 'browsersync-reload']);
-    
+
     gulp.watch(config.files.fonts.src, ['fonts', 'browsersync-reload']);
-    
+
     gulp.watch(config.files.images.src, ['images', 'browsersync-reload']);
-    
+
     gulp.watch(config.files.js.src, ['scripts', 'browsersync-reload']);
-    
+
     gulp.watch(config.files.scss.all, ['style.css', 'browsersync-reload']);
-    
+
 });

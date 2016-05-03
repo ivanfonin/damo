@@ -8,7 +8,7 @@ Gulp configuration file for the Themegulper workflow.
 --------
 theme - Name of your WordPress theme.
 */
-var theme = "shopper";
+var theme = "themegulper";
 
 /* Paths
 --------
@@ -18,7 +18,7 @@ dist  - Distribution version of the WordPress theme with minified styles, script
 .temp - Temporary folder. Remove it with 'gulp clean' command.
 */
 var src = "./src/",
-    build = /*"./build/" + theme + "/", */"/var/www/shopper.dev/wp-content/themes/" + theme + "/",
+    build = "./build/" + theme + "/",
     dist = "./dist/" + theme + "/",
     temp = "./.temp/";
 
@@ -118,7 +118,10 @@ module.exports = {
     Browsersync settings.
     */
     browsersync: {
-        proxy: 'shopper.dev'
+      open: 'external',
+      host: 'themegulper.dev',
+      proxy: 'themegulper.dev',
+      port: 8080
     },
     /* Handle Errors
     ----------------
