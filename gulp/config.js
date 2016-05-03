@@ -16,10 +16,9 @@ src   - Source files of your theme. Edit only in this directory.
 build - Working version of your theme for testing purposes.
 dist  - Distribution version of the WordPress theme with minified styles, scripts, etc.
 .temp - Temporary folder. Remove it with 'gulp clean' command.
-bower - Folder containing all Bower components.
 */
 var src = "./src/",
-    build = "./build/" + theme + "/",
+    build = /*"./build/" + theme + "/", */"/var/www/shopper.dev/wp-content/themes/" + theme + "/",
     dist = "./dist/" + theme + "/",
     temp = "./.temp/";
 
@@ -120,5 +119,10 @@ module.exports = {
     */
     browsersync: {
         proxy: 'shopper.dev'
-    }
+    },
+    /* Handle Errors
+    ----------------
+    Assign module with gulp-notify plugin to config.logErrors.
+    */
+    logErrors: require('./lib/logErrors')
 };
