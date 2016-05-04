@@ -13,11 +13,6 @@ gulp.task('languages', function() {
     .pipe(gulp.dest(config.folders.languages.build));
 });
 
-gulp.task('fonts', function() {
-    return gulp.src(config.files.fonts.src)
-    .pipe(gulp.dest(config.folders.fonts.build));
-});
-
 gulp.task('images', function() {
     return gulp.src(config.files.images.src)
     .pipe(gulp.dest(config.folders.images.build));
@@ -31,6 +26,27 @@ gulp.task('videos', function() {
 gulp.task('screenshot', function() {
     return gulp.src(config.images.screenshot.src)
     .pipe(gulp.dest(config.project.build));
+});
+
+gulp.task('iconfont', function() {
+  return gulp.src(config.files.icons.src)
+    .pipe(plugins.iconfont({ fontName: config.iconfont.name }))
+    .on('glyphs', function(glyphs, options) {
+      gulp.src(config.folders.icons.src + '_template.scss')
+        .pipe(plugins.consolidate('lodash', {
+          glyphs: glyphs,
+          fontName: config.iconfont.name,
+          fontPath: 'fonts/' + config.iconfont.name + '/',
+          className: config.iconfont.class
+        }))
+        .pipe(gulp.dest(config.folders.icons.compiled + config.iconfont.name))
+    })
+    .pipe(gulp.dest(config.folders.fonts.src + config.iconfont.name + '/'));
+});
+
+gulp.task('fonts', ['iconfont'], function() {
+    return gulp.src(config.files.fonts.src)
+    .pipe(gulp.dest(config.folders.fonts.build));
 });
 
 gulp.task('scripts', function() {

@@ -8,7 +8,7 @@ Gulp configuration file for the Themegulper workflow.
 --------
 theme - Name of your WordPress theme.
 */
-var theme = "themegulper";
+var theme = "themetest";
 
 /* Paths
 --------
@@ -63,6 +63,10 @@ module.exports = {
             build: build + 'js/',
             dist: dist + 'js/'
         },
+        icons: {
+            src: src + 'icons/',
+            compiled: src + 'scss/fonts/'
+        },
         scss: {
             src: src + 'scss/'
         },
@@ -94,6 +98,9 @@ module.exports = {
         js: {
             src: src + 'js/**/*.js'
         },
+        icons: {
+            src: src + 'icons/*.svg'
+        },
         scss: {
             src: src + 'scss/style.scss', // Main .scss file with @import's of all other .scss files!
             all: src + 'scss/**/*.scss'   // Need this path to 'watch' all files for changes.
@@ -119,9 +126,17 @@ module.exports = {
     */
     browsersync: {
       open: 'external',
-      host: 'themegulper.dev',
-      proxy: 'themegulper.dev',
+      host: 'themetest.dev',
+      proxy: 'themetest.dev',
       port: 8080
+    },
+    /* IconFont
+    --------------
+    Settings for 'gulp-iconfont' plugin.
+    */
+    iconfont: {
+      name: 'testfont',
+      class: 'test'
     },
     /* Handle Errors
     ----------------
