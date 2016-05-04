@@ -28,6 +28,15 @@ gulp.task('screenshot', function() {
     .pipe(gulp.dest(config.project.build));
 });
 
+gulp.task('scripts', function() {
+    return gulp.src(config.files.js.src)
+    .pipe(plugins.sourcemaps.init())
+        .pipe(plugins.uglify())
+        .pipe(plugins.concat('app.min.js'))
+    .pipe(plugins.sourcemaps.write())
+    .pipe(gulp.dest(config.folders.js.build));
+});
+
 gulp.task('iconfont', function() {
   return gulp.src(config.files.icons.src)
     .pipe(plugins.iconfont({ fontName: config.iconfont.name }))
@@ -49,16 +58,7 @@ gulp.task('fonts', ['iconfont'], function() {
     .pipe(gulp.dest(config.folders.fonts.build));
 });
 
-gulp.task('scripts', function() {
-    return gulp.src(config.files.js.src)
-    .pipe(plugins.sourcemaps.init())
-        .pipe(plugins.uglify())
-        .pipe(plugins.concat('app.min.js'))
-    .pipe(plugins.sourcemaps.write())
-    .pipe(gulp.dest(config.folders.js.build));
-});
-
-gulp.task('style.scss', function() {
+gulp.task('style.scss', ['fonts'], function() {
     return gulp.src(config.files.scss.src)
     .pipe(plugins.sourcemaps.init())
         .pipe(plugins.sass())
@@ -75,4 +75,4 @@ gulp.task('style.css', ['style.scss'], function() {
     .pipe(gulp.dest(config.project.build));
 });
 
-gulp.task('build', ['php', 'languages', 'fonts', 'images', 'videos', 'screenshot', 'scripts', 'style.css']);
+gulp.task('build', ['php', 'languages', 'images', 'videos', 'screenshot', 'scripts', 'style.css']);
