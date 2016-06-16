@@ -25,7 +25,7 @@ gulp.task('images', function() {
 
 gulp.task('screenshot', function() {
     return gulp.src(config.images.screenshot.src)
-    .pipe(gulp.dest(config.project.build))
+    .pipe(gulp.dest(config.project.build));
 });
 
 gulp.task('scripts', function() {
