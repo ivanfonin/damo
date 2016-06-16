@@ -47,7 +47,7 @@ gulp.task('dist-iconfont', function() {
           fontPath: 'fonts/' + config.iconfont.name + '/',
           className: config.iconfont.class
         }))
-        .pipe(gulp.dest(config.folders.icons.compiled + config.iconfont.name))
+        .pipe(gulp.dest(config.folders.icons.compiled + config.iconfont.name));
     })
     .pipe(gulp.dest(config.folders.fonts.src + config.iconfont.name + '/'));
 });
