@@ -8,7 +8,7 @@ Gulp configuration file for the Themegulper workflow.
 --------
 theme - Name of your WordPress theme.
 */
-var theme = "starter";
+var theme = "themetest";
 
 /* Paths
 --------
@@ -16,7 +16,6 @@ src   - Source files of your theme. Edit only in this directory.
 build - Working version of your theme for testing purposes.
 dist  - Distribution version of the WordPress theme with minified styles, scripts, etc.
 .temp - Temporary folder. Remove it with 'gulp clean' command.
-bower - Folder containing all Bower components.
 */
 var src = "./src/",
     build = "./build/" + theme + "/",
@@ -29,7 +28,7 @@ var src = "./src/",
 module.exports = {
     /* Project
     ----------
-    Main project folders
+    Main project folders.
     */
     project: {
         src: src,
@@ -39,7 +38,7 @@ module.exports = {
     },
     /* Folders
     ----------
-    Helper project folders based on WordPress theme structure
+    Helper project folders based on WordPress theme structure.
     */
     folders: {
         languages: {
@@ -55,10 +54,18 @@ module.exports = {
             build: build + 'images/',
             dist: dist + 'images/'
         },
+        videos: {
+            build: build + 'videos/',
+            dist: dist + 'videos/'
+        },
         js: {
             src: src + 'js/',
             build: build + 'js/',
             dist: dist + 'js/'
+        },
+        icons: {
+            src: src + 'icons/',
+            compiled: src + 'scss/fonts/'
         },
         scss: {
             src: src + 'scss/'
@@ -70,7 +77,7 @@ module.exports = {
     },
     /* Files
     --------
-    All PHP files, languages, scripts, fonts, images and styles source files of the WordPress theme
+    All PHP files, languages, scripts, fonts, images and styles source files of the WordPress theme.
     */
     files: {
         languages: {
@@ -85,17 +92,23 @@ module.exports = {
         images: {
             src: src + 'images/**/*(*.png|*.jpg|*.jpeg|*.gif|*.svg)'
         },
+        videos: {
+            src: src + 'videos/**/*'
+        },
         js: {
             src: src + 'js/**/*.js'
         },
+        icons: {
+            src: src + 'icons/*.svg'
+        },
         scss: {
             src: src + 'scss/style.scss', // Main .scss file with @import's of all other .scss files!
-            all: src + 'scss/**/*.scss'   // Need this path to 'watch' all files for changes
+            all: src + 'scss/**/*.scss'   // Need this path to 'watch' all files for changes.
         }
     },
     /* Images
     ---------
-    Images optimization settings for 'gulp-imagemin' plugin
+    Images optimization settings for 'gulp-imagemin' plugin.
     */
     images: {
         imagemin: {
@@ -109,9 +122,25 @@ module.exports = {
     },
     /* Browsersync
     --------------
-    Images optimization settings for 'gulp-imagemin' plugin
+    Browsersync settings.
     */
     browsersync: {
-        proxy: 'themetest.dev'
-    }
+      open: 'external',
+      host: 'themetest.dev',
+      proxy: 'themetest.dev',
+      port: 8080
+    },
+    /* IconFont
+    --------------
+    Settings for 'gulp-iconfont' plugin.
+    */
+    iconfont: {
+      name: 'testfont',
+      class: 'test'
+    },
+    /* Handle Errors
+    ----------------
+    Assign module with gulp-notify plugin to config.logErrors.
+    */
+    logErrors: require('./lib/logErrors')
 };
