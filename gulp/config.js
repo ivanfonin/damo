@@ -59,9 +59,16 @@ module.exports = {
             dist: dist + 'videos/'
         },
         js: {
-            src: src + 'js/',
-            build: build + 'js/',
-            dist: dist + 'js/'
+            client: {
+                src: src + 'js/',
+                build: build + 'js/',
+                dist: dist + 'js/',
+            },
+            admin: {
+                src: src + 'js/admin/',
+                build: build + 'js/admin/',
+                dist: dist + 'js/admin/'
+            }
         },
         icons: {
             src: src + 'icons/',
@@ -96,7 +103,14 @@ module.exports = {
             src: src + 'videos/**/*'
         },
         js: {
-            src: src + 'js/**/*.js'
+            client: {
+                src: [
+                  src + 'js/app.js'
+                ],
+            },
+            admin: {
+                src: src + 'js/admin/**/*.js'
+            }
         },
         icons: {
             src: src + 'icons/*.svg'
@@ -135,8 +149,15 @@ module.exports = {
     Settings for 'gulp-iconfont' plugin.
     */
     iconfont: {
-      name: 'testfont',
-      class: 'test'
+      name: 'test',
+      class: 'test-icon',
+      options: {
+          normalize: true,
+          prependUnicode: true,
+          fontName: 'test',
+          appendCodepoints: true,
+          formats: ['ttf', 'eot', 'woff', 'woff2', 'svg']
+      }
     },
     /* Handle Errors
     ----------------

@@ -29,11 +29,16 @@ gulp.task('dist-screenshot', function() {
     .pipe(gulp.dest(config.project.dist));
 });
 
-gulp.task('dist-scripts', function() {
-    return gulp.src(config.files.js.src)
+gulp.task('dist-admin-scripts', function() {
+    return gulp.src(config.files.js.admin.src)
+    .pipe(gulp.dest(config.folders.js.admin.dist));
+});
+
+gulp.task('dist-scripts', ['dist-admin-scripts'], function() {
+    return gulp.src(config.files.js.client.src)
     .pipe(plugins.uglify())
     .pipe(plugins.concat('app.min.js'))
-    .pipe(gulp.dest(config.folders.js.dist));
+    .pipe(gulp.dest(config.folders.js.client.dist));
 });
 
 gulp.task('dist-iconfont', function() {

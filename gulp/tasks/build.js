@@ -28,18 +28,23 @@ gulp.task('screenshot', function() {
     .pipe(gulp.dest(config.project.build));
 });
 
-gulp.task('scripts', function() {
-    return gulp.src(config.files.js.src)
+gulp.task('admin-scripts', function() {
+    return gulp.src(config.files.js.admin.src)
+    .pipe(gulp.dest(config.folders.js.admin.build));
+});
+
+gulp.task('scripts', ['admin-scripts'], function() {
+    return gulp.src(config.files.js.client.src)
     .pipe(plugins.sourcemaps.init())
         .pipe(plugins.uglify())
         .pipe(plugins.concat('app.min.js'))
     .pipe(plugins.sourcemaps.write())
-    .pipe(gulp.dest(config.folders.js.build));
+    .pipe(gulp.dest(config.folders.js.client.build));
 });
 
-gulp.task('iconfont', function() {
+gulp.task('iconfont', function(done) {
   return gulp.src(config.files.icons.src)
-    .pipe(plugins.iconfont({ fontName: config.iconfont.name }))
+    .pipe(plugins.iconfont( config.iconfont.options ))
     .on('glyphs', function(glyphs, options) {
       gulp.src(config.folders.icons.src + '_template.scss')
         .pipe(plugins.consolidate('lodash', {
