@@ -1,13 +1,11 @@
-# Ignore all WordPress theme files in src/ (build/ and dist/ too). 
+# Ignore all WordPress theme files in src/, build/ and dist/ folders.
 # Ignore bower.json and bower_components/ folder.
 # Track only Themegulper workflow files!
-src/*
+# Ignore .temp folder.
 src/
 dist/
 build/
 node_modules/
-bower_components/
-bower.json
 .temp
 .sass-cache
 npm-debug.log

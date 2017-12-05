@@ -1,10 +1,10 @@
 {
-  "name": "themegulper",
+  "name": "damo",
   "version": "1.0.0",
-  "description": "WordPress theme development workflow using Gulp.js",
+  "description": "WordPress theme development workflow with Gulp.",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ivanfonin/themegulper.git"
+    "url": "https://github.com/ivanfonin/damo.git"
   },
   "keywords": [
     "wordpress",
