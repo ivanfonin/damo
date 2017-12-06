@@ -20,11 +20,11 @@ gulp.task('watch', ['browsersync'], () => {
 
     gulp.watch(config.files.images.src, ['watch-images'])
 
-    gulp.watch(config.files.js.client.src, ['watch-scripts'])
+    gulp.watch(config.files.js.client.src, ['watch-js'])
 
-    gulp.watch(config.files.js.admin.src, ['watch-admin-scripts'])
+    gulp.watch(config.files.js.admin.src, ['watch-js'])
 
-    gulp.watch(config.files.scss.all, ['watch-styles'])
+    gulp.watch(config.files.scss.all, ['watch-css'])
 
 })
 
@@ -52,20 +52,14 @@ gulp.task('watch-images', ['images'], (done) => {
     done()
 })
 
-// Reload browsers when 'scripts' task is done.
-gulp.task('watch-scripts', ['scripts'], (done) => {
+// Reload browsers when 'js' task is done.
+gulp.task('watch-js', ['js'], (done) => {
     browsersync.reload()
     done()
 })
 
-// Reload browsers when 'admin-scripts' task is done.
-gulp.task('watch-admin-scripts', ['admin-scripts'], (done) => {
-    browsersync.reload()
-    done()
-})
-
-// Reload browsers when 'style.css' task is done.
-gulp.task('watch-styles', ['style.css'], (done) => {
+// Reload browsers when 'css' task is done.
+gulp.task('watch-css', ['css'], (done) => {
     browsersync.reload()
     done()
 })
