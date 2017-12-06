@@ -62,7 +62,8 @@ gulp.task('scss', ['fonts'], () => {
             .pipe(plugins.sass())
             .on('error', config.logErrors)
             .pipe(plugins.postcss([ autoprefixer({ browsers: ['last 2 versions'] }) ]))
-            .pipe(plugins.cleanCss())
+            // One change with 'build' task - not minifying css file for wordpress.org
+            //.pipe(plugins.cleanCss()) -
         .pipe(plugins.sourcemaps.write())
         .pipe(gulp.dest(config.project.temp))
 })
@@ -73,4 +74,4 @@ gulp.task('css', ['scss'], () => {
         .pipe(gulp.dest(config.project.build))
 })
 
-gulp.task('build', ['php', 'languages', 'images', 'videos', 'screenshot', 'js', 'css'])
+gulp.task('wordpress', ['php', 'languages', 'images', 'videos', 'screenshot', 'js', 'css'])
