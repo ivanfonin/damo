@@ -8,7 +8,7 @@ Gulp configuration file for the Themegulper workflow.
 --------
 theme - Name of your WordPress theme.
 */
-var theme = "themetest";
+var theme = "damo";
 
 /* Paths
 --------
@@ -26,6 +26,7 @@ var src = "./src/",
 -----------
 */
 module.exports = {
+    
     /* Project
     ----------
     Main project folders.
@@ -36,6 +37,7 @@ module.exports = {
         dist: dist,
         temp: temp
     },
+
     /* Folders
     ----------
     Helper project folders based on WordPress theme structure.
@@ -46,42 +48,39 @@ module.exports = {
             dist: dist + 'languages/'
         },
         fonts: {
-            src: src + 'fonts/',
-            build: build + 'fonts/',
-            dist: dist + 'fonts/'
+            src: src + 'assets/fonts/',
+            build: build + 'assets/fonts/',
+            dist: dist + 'assets/fonts/'
         },
         images: {
-            build: build + 'images/',
-            dist: dist + 'images/'
+            build: build + 'assets/images/',
+            dist: dist + 'assets/images/'
         },
         videos: {
-            build: build + 'videos/',
-            dist: dist + 'videos/'
+            build: build + 'assets/videos/',
+            dist: dist + 'assets/videos/'
         },
         js: {
             client: {
-                src: src + 'js/',
-                build: build + 'js/',
-                dist: dist + 'js/',
+                src: src + 'assets/js/',
+                build: build + 'assets/js/',
+                dist: dist + 'assets/js/',
             },
             admin: {
-                src: src + 'js/admin/',
-                build: build + 'js/admin/',
-                dist: dist + 'js/admin/'
+                src: src + 'assets/js/admin/',
+                build: build + 'assets/js/admin/',
+                dist: dist + 'assets/js/admin/'
             }
         },
-        icons: {
-            src: src + 'icons/',
-            compiled: src + 'scss/fonts/'
-        },
         scss: {
-            src: src + 'scss/'
+            src: src + 'assets/scss/'
         },
         css: {
-            build: build + 'css/',
-            dist: dist + 'css/'
+            build: build + 'assets/css/',
+            dist: dist + 'assets/css/'
         }
     },
+
     /* Files
     --------
     All PHP files, languages, scripts, fonts, images and styles source files of the WordPress theme.
@@ -94,32 +93,30 @@ module.exports = {
             src: src + '**/*.php'
         },
         fonts: {
-            src: src + 'fonts/**/*'
+            src: src + 'assets/fonts/**/*'
         },
         images: {
-            src: src + 'images/**/*(*.png|*.jpg|*.jpeg|*.gif|*.svg)'
+            src: src + 'assets/images/**/*(*.png|*.jpg|*.jpeg|*.gif|*.svg)'
         },
         videos: {
-            src: src + 'videos/**/*'
+            src: src + 'assets/videos/**/*'
         },
         js: {
             client: {
                 src: [
-                  src + 'js/app.js'
+                  src + 'assets/js/app.js'
                 ],
             },
             admin: {
-                src: src + 'js/admin/**/*.js'
+                src: src + 'assets/js/admin/**/*.js'
             }
         },
-        icons: {
-            src: src + 'icons/*.svg'
-        },
         scss: {
-            src: src + 'scss/style.scss', // Main .scss file with @import's of all other .scss files!
-            all: src + 'scss/**/*.scss'   // Need this path to 'watch' all files for changes.
+            src: src + 'assets/scss/style.scss', // Main .scss file with @import's of all other .scss files!
+            all: src + 'assets/scss/**/*.scss'   // Need this path to 'watch' all files for changes.
         }
     },
+
     /* Images
     ---------
     Images optimization settings for 'gulp-imagemin' plugin.
@@ -134,31 +131,18 @@ module.exports = {
             src: src + 'screenshot.png'
         }
     },
+
     /* Browsersync
     --------------
     Browsersync settings.
     */
     browsersync: {
       open: 'external',
-      host: 'themetest.dev',
-      proxy: 'themetest.dev',
+      host: 'damo.dev',
+      proxy: 'damo.dev',
       port: 8080
     },
-    /* IconFont
-    --------------
-    Settings for 'gulp-iconfont' plugin.
-    */
-    iconfont: {
-      name: 'test',
-      class: 'test-icon',
-      options: {
-          normalize: true,
-          prependUnicode: true,
-          fontName: 'test',
-          appendCodepoints: true,
-          formats: ['ttf', 'eot', 'woff', 'woff2', 'svg']
-      }
-    },
+
     /* Handle Errors
     ----------------
     Assign module with gulp-notify plugin to config.logErrors.
