@@ -1,6 +1,10 @@
 'use strict'
 
 var gulp = require('gulp'),
+    browserify = require('browserify'),
+    vueify = require('vueify'),
+    babelify = require('babelify'),
+    buffer = require('vinyl-buffer'),
     autoprefixer = require('autoprefixer'),
     plugins = require('gulp-load-plugins')({ camelize: true }),
     config = require('../config.js')
@@ -41,7 +45,7 @@ gulp.task('admin-js', function() {
         .pipe(gulp.dest(config.folders.js.admin.build))
 })
 
-//
+/*
 gulp.task('js', ['admin-js'], function() {
     return gulp.src(config.files.js.client.src)
         .pipe(plugins.sourcemaps.init())
@@ -49,6 +53,23 @@ gulp.task('js', ['admin-js'], function() {
             .pipe(plugins.concat('app.min.js'))
         .pipe(plugins.sourcemaps.write())
         .pipe(gulp.dest(config.folders.js.client.build))
+}) */
+
+// Compile scripts.
+gulp.task('js', function() {
+    // Set up the browserify instance on a task basis.
+  return browserify({ entries: config.files.js.client.src, extensions: ['.js'], debug: true })
+    .transform(vueify)
+    .transform(babelify, { presets: ['es2015'] })
+    .bundle()
+    .pipe(source('app.js'))
+    .pipe(buffer())
+    .pipe(plugins.sourcemaps.init({ loadMaps: true }))
+        // Add transformation tasks to the pipeline here.
+        .pipe(plugins.uglify())
+        .on('error', gutil.log)
+    .pipe(plugins.sourcemaps.write())
+    .pipe(gulp.dest(config.folders.js.client.build))
 })
 
 gulp.task('fonts', function() {
