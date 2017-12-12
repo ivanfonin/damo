@@ -22,8 +22,6 @@ gulp.task('watch', ['browsersync'], () => {
 
     gulp.watch(config.files.js.client.src, ['watch-js'])
 
-    gulp.watch(config.files.js.admin.src, ['watch-js'])
-
     gulp.watch(config.files.scss.all, ['watch-css'])
 
 })

@@ -61,10 +61,15 @@ module.exports = {
             dist: dist + 'assets/videos/'
         },
         js: {
-            client: {
-                src: src + 'assets/js/',
-                build: build + 'assets/js/',
-                dist: dist + 'assets/js/',
+            app: {
+                src: src + 'assets/js/app/',
+                build: build + 'assets/js/app/',
+                dist: dist + 'assets/js/app/',
+            },
+            theme: {
+                src: src + 'assets/js/theme/',
+                build: build + 'assets/js/theme/',
+                dist: dist + 'assets/js/theme/',
             },
             admin: {
                 src: src + 'assets/js/admin/',
@@ -103,9 +108,12 @@ module.exports = {
             src: src + 'assets/videos/**/*'
         },
         js: {
-            client: {
+            app: {
+                src: src + 'assets/js/app/app.js'
+            },
+            theme: {
                 src: [
-                  src + 'assets/js/app.js'
+                    src + 'assets/js/theme/**/*.js'
                 ],
             },
             admin: {

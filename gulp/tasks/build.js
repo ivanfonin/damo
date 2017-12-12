@@ -41,27 +41,16 @@ gulp.task('screenshot', () => {
         .pipe(gulp.dest(config.project.build))
 })
 
-/*
-// Compile admin scripts.
-gulp.task('admin-js', () => {
-    return gulp.src(config.files.js.admin.src)
-        .pipe(gulp.dest(config.folders.js.admin.build))
+// Copy javascrip libraries and theme script.
+gulp.task('theme-js', () => {
+    return gulp.src(config.files.js.theme.src)
+        .pipe(gulp.dest(config.folders.js.theme.build))
 })
 
-
-gulp.task('js', ['admin-js'], () => {
-    return gulp.src(config.files.js.client.src)
-        .pipe(plugins.sourcemaps.init())
-            .pipe(plugins.uglify())
-            .pipe(plugins.concat('app.min.js'))
-        .pipe(plugins.sourcemaps.write())
-        .pipe(gulp.dest(config.folders.js.client.build))
-}) */
-
 // Compile scripts.
-gulp.task('js', () => {
+gulp.task('js', ['theme-js'], () => {
     // Set up the browserify instance on a task basis.
-  return browserify({ entries: config.files.js.client.src, extensions: ['.js'], debug: true })
+  return browserify({ entries: config.files.js.app.src, extensions: ['.js'], debug: true })
     .transform(vueify)
     .transform(babelify, { presets: ['es2015'] })
     .bundle()
@@ -72,7 +61,7 @@ gulp.task('js', () => {
         .pipe(plugins.uglify())
         .on('error', gutil.log)
     .pipe(plugins.sourcemaps.write())
-    .pipe(gulp.dest(config.folders.js.client.build))
+    .pipe(gulp.dest(config.folders.js.app.build))
 })
 
 gulp.task('fonts', () => {
