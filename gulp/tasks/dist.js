@@ -11,65 +11,70 @@ gulp.task('dist-readme', () => {
         .pipe(gulp.dest(config.project.dist))
 })
 
-// Copy php files.
-gulp.task('dist-php', () => {
-    return gulp.src(config.files.php.src)
-        .pipe(gulp.dest(config.project.dist))
-})
-
 // Copy language files.
 gulp.task('dist-languages', () => {
     return gulp.src(config.files.languages.src)
-        .pipe(gulp.dest(config.folders.languages.dist))
+        .pipe(gulp.dest(config.folders.languages.build))
 })
 
 // Copy images.
 gulp.task('dist-images', () => {
     return gulp.src(config.files.images.src)
-        .pipe(gulp.dest(config.folders.images.dist))
+        .pipe(gulp.dest(config.folders.images.build))
 })
 
 // Copy video files.
 gulp.task('dist-videos', () => {
     return gulp.src(config.files.videos.src)
-        .pipe(gulp.dest(config.folders.videos.dist))
+        .pipe(gulp.dest(config.folders.videos.build))
 })
 
 // Copy screenshot.
 gulp.task('dist-screenshot', () => {
     return gulp.src(config.images.screenshot.src)
-        .pipe(gulp.dest(config.project.dist))
+        .pipe(gulp.dest(config.project.build))
 })
 
-// Compile admin scripts.
-gulp.task('dist-admin-js', () => {
-    return gulp.src(config.files.js.admin.src)
-        .pipe(gulp.dest(config.folders.js.admin.dist))
+// Copy javascrip libraries and theme script.
+gulp.task('dist-theme-js', () => {
+    return gulp.src(config.files.js.theme.src)
+        .pipe(gulp.dest(config.folders.js.theme.build))
 })
 
-//
-gulp.task('dist-js', ['dist-admin-js'], () => {
-    return gulp.src(config.files.js.client.src)
-        .pipe(plugins.sourcemaps.init())
-            .pipe(plugins.uglify())
-            .pipe(plugins.concat('app.min.js'))
-        .pipe(plugins.sourcemaps.write())
-        .pipe(gulp.dest(config.folders.js.client.dist))
+// Compile scripts.
+gulp.task('dist-js', ['dist-theme-js'], () => {
+    // Set up the browserify instance on a task basis.
+  return browserify({ entries: config.files.js.app.src, extensions: ['.js'], debug: true })
+    .transform(vueify)
+    .transform(babelify, { presets: ['es2015'] })
+    .bundle()
+    .pipe(source('app.min.js'))
+    .pipe(buffer())
+    .pipe(plugins.sourcemaps.init({ loadMaps: true }))
+        // Add transformation tasks to the pipeline here.
+        .pipe(plugins.uglify())
+        .on('error', gutil.log)
+    .pipe(plugins.sourcemaps.write())
+    .pipe(gulp.dest(config.folders.js.app.build))
 })
 
 gulp.task('dist-fonts', () => {
     return gulp.src(config.files.fonts.src)
-        .pipe(gulp.dest(config.folders.fonts.dist))
+        .pipe(gulp.dest(config.folders.fonts.build))
 })
 
-gulp.task('dist-scss', ['dist-fonts'], () => {
+gulp.task('dist-admin-css', ['dist-fonts'], () => {
+    return gulp.src(config.files.css.src)
+        .pipe(gulp.dest(config.folders.css.build))
+})
+
+gulp.task('dist-scss', ['admin-css'], () => {
     return gulp.src(config.files.scss.src)
         .pipe(plugins.sourcemaps.init())
             .pipe(plugins.sass())
             .on('error', config.logErrors)
             .pipe(plugins.postcss([ autoprefixer({ browsers: ['last 2 versions'] }) ]))
-            // One change with 'build' task - not minifying css file for wordpress.org
-            //.pipe(plugins.cleanCss()) -
+            .pipe(plugins.cleanCss())
         .pipe(plugins.sourcemaps.write())
         .pipe(gulp.dest(config.project.temp))
 })
@@ -77,7 +82,7 @@ gulp.task('dist-scss', ['dist-fonts'], () => {
 gulp.task('dist-css', ['dist-scss'], () => {
     return gulp.src([config.project.src + 'style.css', config.project.temp + 'style.css'])
         .pipe(plugins.concat('style.css'))
-        .pipe(gulp.dest(config.project.dist))
+        .pipe(gulp.dest(config.project.build))
 })
 
 gulp.task('dist', ['dist-php', 'dist-languages', 'dist-images', 'dist-videos', 'dist-screenshot', 'dist-js', 'dist-css'])
