@@ -4,7 +4,9 @@ var gulp = require('gulp'),
     browserify = require('browserify'),
     vueify = require('vueify'),
     babelify = require('babelify'),
+    source = require('vinyl-source-stream'),
     buffer = require('vinyl-buffer'),
+    gutil = require('gulp-util'),
     autoprefixer = require('autoprefixer'),
     plugins = require('gulp-load-plugins')({ camelize: true }),
     config = require('../config.js')
@@ -39,13 +41,14 @@ gulp.task('screenshot', () => {
         .pipe(gulp.dest(config.project.build))
 })
 
+/*
 // Compile admin scripts.
 gulp.task('admin-js', () => {
     return gulp.src(config.files.js.admin.src)
         .pipe(gulp.dest(config.folders.js.admin.build))
 })
 
-/*
+
 gulp.task('js', ['admin-js'], () => {
     return gulp.src(config.files.js.client.src)
         .pipe(plugins.sourcemaps.init())
@@ -62,7 +65,7 @@ gulp.task('js', () => {
     .transform(vueify)
     .transform(babelify, { presets: ['es2015'] })
     .bundle()
-    .pipe(source('app.js'))
+    .pipe(source('app.min.js'))
     .pipe(buffer())
     .pipe(plugins.sourcemaps.init({ loadMaps: true }))
         // Add transformation tasks to the pipeline here.
@@ -77,7 +80,12 @@ gulp.task('fonts', () => {
         .pipe(gulp.dest(config.folders.fonts.build))
 })
 
-gulp.task('scss', ['fonts'], () => {
+gulp.task('admin-css', ['fonts'], () => {
+    return gulp.src(config.files.css.src)
+        .pipe(gulp.dest(config.folders.css.build))
+})
+
+gulp.task('scss', ['admin-css'], () => {
     return gulp.src(config.files.scss.src)
         .pipe(plugins.sourcemaps.init())
             .pipe(plugins.sass())

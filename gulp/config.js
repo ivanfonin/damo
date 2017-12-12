@@ -115,6 +115,9 @@ module.exports = {
         scss: {
             src: src + 'assets/scss/style.scss', // Main .scss file with @import's of all other .scss files!
             all: src + 'assets/scss/**/*.scss'   // Need this path to 'watch' all files for changes.
+        },
+        css: {
+            src: src + 'assets/css/**/*.css' // Have admin styles here.
         }
     },
 
