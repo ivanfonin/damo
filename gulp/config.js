@@ -153,11 +153,6 @@ module.exports = {
       host: 'damo.dev',
       proxy: 'damo.dev',
       port: 8080
-    },
-
-    /* Handle Errors
-    ----------------
-    Assign module with gulp-notify plugin to config.logErrors.
-    */
-    logErrors: require('./lib/logErrors')
+    }
+    
 };

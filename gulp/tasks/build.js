@@ -76,7 +76,7 @@ gulp.task('scss', ['admin-css'], () => {
     return gulp.src(config.files.scss.src)
         .pipe(plugins.sourcemaps.init())
             .pipe(plugins.sass())
-            .on('error', config.logErrors)
+            .on('error', gutil.log)
             .pipe(plugins.postcss([ autoprefixer({ browsers: ['last 2 versions'] }) ]))
             .pipe(plugins.cleanCss())
         .pipe(plugins.sourcemaps.write())
