@@ -57,8 +57,6 @@ gulp.task('js', ['theme-js'], () => {
     .pipe(source('app.min.js'))
     .pipe(buffer())
     .pipe(plugins.sourcemaps.init({ loadMaps: true }))
-        // Add transformation tasks to the pipeline here.
-        .pipe(plugins.uglify())
         .on('error', gutil.log)
     .pipe(plugins.sourcemaps.write())
     .pipe(gulp.dest(config.folders.js.app.build))
