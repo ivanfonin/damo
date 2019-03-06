@@ -23,10 +23,10 @@
   "author": "Ivan Fonin",
   "license": "MIT",
   "devDependencies": {
-    "autoprefixer": "^7.1.6",
-    "browser-sync": "^2.18.13",
+    "autoprefixer": "^9.0.2",
+    "browser-sync": "^2.26.3",
     "require-dir": "^0.3.2",
-    "del": "~1.1.1",
+    "del": "~3.0.0",
     "gulp": "^3.9.1",
     "gulp-clean-css": "^2.0.6",
     "gulp-concat": "~2.5.0",
